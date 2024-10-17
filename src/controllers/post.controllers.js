@@ -22,7 +22,7 @@ const createPost = asyncHandler(async (req, res) => {
         .json(new ApiResponse(200, "Post created Successfully", savedPost));
 });
 
-const getAllPost = asyncHandler(async (req, res) => {
+const getAllPost = asyncHandler(async (_, res) => {
     const post = await Post.find()
         // .populate("comments")
         // .exec();
