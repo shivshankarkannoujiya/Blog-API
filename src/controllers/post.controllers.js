@@ -22,4 +22,18 @@ const createPost = asyncHandler(async (req, res) => {
         .json(new ApiResponse(200, "Post created Successfully", savedPost));
 });
 
-export { createPost };
+const getAllPost = asyncHandler(async (req, res) => {
+    const post = await Post.find()
+        // .populate("comments")
+        // .exec();
+
+    if (!post) {
+        throw new ApiError(404, "Post does not exist !!");
+    }
+
+    return res
+        .status(201)
+        .json(new ApiResponse(200, "Fetched all post Successfully", post));
+});
+
+export { createPost, getAllPost };
